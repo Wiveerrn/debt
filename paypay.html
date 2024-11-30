@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>はよ返済しろ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+            background-color: #f0f0f0;
+        }
+        #amount {
+            font-size: 48px;
+            color: #333;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>現在の返済額</h1>
+    <div id="amount">計算中...</div>
+
+    <script>
+        // 初期日付を設定（2024年11月27日）
+        var startDate = new Date('2024-11-27T00:00:00+09:00');
+
+        // 現在の日本時間を取得
+        var now = new Date();
+        var utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+        var jstNow = new Date(utc + (9 * 60 * 60000));
+
+        // 経過日数を計算
+        var diffTime = jstNow - startDate;
+        var diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+        // 金額を計算
+        var amount = 80000 + (1000 * diffDays);
+
+        // 金額をフォーマット
+        var formattedAmount = amount.toLocaleString('ja-JP') + '円';
+
+        // 金額を表示
+        document.getElementById('amount').innerHTML = formattedAmount;
+    </script>
+</body>
+</html>
